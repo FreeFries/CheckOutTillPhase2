@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>apereira</groupId>
+    <artifactId>checkouttill</artifactId>
+    <version>beta_0.1</version> <!-- todo get a tagged version, update this field, build -->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.url.github>https://github.com/FreeFries</project.url.github>
+        <project.url.linkedin>https://www.linkedin.com/in/alexander-p-48893146</project.url.linkedin>
+        <project.author>Alexander Pereira, Java Developer, Croydon, UK</project.author>
+        <project.status>In-Development</project.status>
+        <project.java.version>1.8</project.java.version>
+        <user.name>Alexander Pereira</user.name>
+        <user.email>xma1@gmx.com</user.email>
+        <project.runClass>xander.run.CheckoutTillSystem</project.runClass>
+
+        <skipTests>true</skipTests>
+
+    </properties>
+
+    <contributors>
+        <contributor>
+            <name>${user.name}</name>
+            <email>${user.email}</email>
+        </contributor>
+    </contributors>
+
+    <developers>
+        <developer>
+            <name>${project.author}</name>
+            <url>${project.url.linkedin}</url>
+        </developer>
+    </developers>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <property>
+                    <name>devVar</name>
+                    <value>devValue</value> <!-- todo maybe could use this to name build as dev or prod -->
+                </property>
+            </activation>
+
+            <!-- can also have repositories that are perculiar just for a given profile -->
+
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <activation>
+                <property>
+                    <name>prodVar</name>
+                    <value>prodValue</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+<!--
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.21.0</version>
+        </dependency>
+-->
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}_${project.version}</finalName> <!-- need to add the profile if poss -->
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>${project.runClass}</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <mode>${project.status}</mode>
+                            <url>${project.url.linkedin}</url>
+                            <Built-By>${project.author}</Built-By>
+                            <gitHubBespoke-key>${project.url.github}</gitHubBespoke-key>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+
+        <defaultGoal>validate clean compile package test</defaultGoal>
+
+    </build>
+
+
+</project>

@@ -1,0 +1,15 @@
+.idea
+.DS_Store
+target/
+*.log
+*.class
+sqliteData/*
+*.iml
+*.tar.gz
+
+# might need to ignore the ones below later
+#*.jar
+#*.war
+#*.ear
+#*.zip
+#*.rar
