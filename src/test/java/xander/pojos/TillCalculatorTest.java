@@ -31,7 +31,7 @@ public class TillCalculatorTest {
 
 
         BigDecimal expected = new BigDecimal(1.10);
-        System.out.println(expected + "=" + runningTotals);
+        //System.out.println(expected + "=" + runningTotals);
         assertThat(runningTotals.toPlainString(),expected.setScale(2,RoundingMode.FLOOR),is(runningTotals));
 
 
